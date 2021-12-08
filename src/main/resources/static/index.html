@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<input id="name" type="text" value="张三"/></br>
+<input id="sex"  type="text" value="男"/></br>
+<button onclick='test()'>提交</button></br>
+<div id="tip"></div>
+
+<script src="jquery.min.js"></script>
+<script>
+    function test(){
+        var name = $("#name").val();
+        var sex = $("#sex").val();
+        $.ajax({
+            url: 'http://localhost:8080/api/hello3',
+            type: "post",
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            data: JSON.stringify({
+                name: name,
+                sex: sex
+            }),
+            success: function (data) {
+                $("#tip").html("姓名="+data.name+" 性别="+data.sex);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $("#tip").html(XMLHttpRequest.responseText);
+            }
+        });
+    }
+</script>
+</body>
+</html>

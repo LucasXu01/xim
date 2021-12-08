@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lucas.xim.dao.UserDao">
+    <select id="login" resultType="com.lucas.xim.core.system.User">
+        SELECT * FROM xim_user WHERE nickname = #{nickname} and password = #{password}
+    </select>
+</mapper>
