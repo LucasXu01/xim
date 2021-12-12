@@ -1,0 +1,14 @@
+package com.lucas.xim.ximcore.nettyimcore.client.console;
+
+import com.lucas.xim.ximcore.nettyimcore.protocal.request.LogoutRequestPacket;
+import io.netty.channel.Channel;
+
+import java.util.Scanner;
+
+public class LogoutConsoleCommand implements ConsoleCommand {
+    @Override
+    public void exec(Scanner scanner, Channel channel) {
+        LogoutRequestPacket logoutRequestPacket = new LogoutRequestPacket();
+        channel.writeAndFlush(logoutRequestPacket);
+    }
+}

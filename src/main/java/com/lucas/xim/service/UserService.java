@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by cc_want on 2018/6/10.
+ * @Description:
+ * @Auther: LucasXu
+ * @email: 18140041@bjtu.edu.cn
+ * @github: https://github.com/LucasXu01
+ * @Date: 2021/12/08/17:40 下午
  */
 @Slf4j
 @Service
@@ -27,5 +31,13 @@ public class UserService {
         rpto.setUser_id(user.get_id());
         rpto.setNickname(login.getNickname());
         return rpto;
+    }
+
+    public boolean register(User user){
+         return mUserDao.register(user);
+    }
+
+    public User queryUserByPhone(String mobile) {
+        return mUserDao.queryUserByPhone(mobile);
     }
 }

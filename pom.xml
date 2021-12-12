@@ -73,6 +73,13 @@
             <version>6.2.0.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.9.0</version>
+        </dependency>
+
+
         <!--自定义添加 以上-->
 
     </dependencies>

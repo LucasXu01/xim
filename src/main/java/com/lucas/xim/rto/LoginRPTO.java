@@ -7,6 +7,6 @@ import org.hibernate.validator.constraints.Length;
 
 @Data
 public class LoginRPTO {
-    private long user_id;
+    private String user_id;
     private String nickname;
 }

@@ -6,4 +6,19 @@
     <select id="login" resultType="com.lucas.xim.core.system.User">
         SELECT * FROM xim_user WHERE nickname = #{nickname} and password = #{password}
     </select>
+
+    <!-- 注册用户 -->
+    <insert id="register" parameterType="com.lucas.xim.core.system.User">
+        insert into xim_user (_id, nickname, mobile, password, create_time)
+        values (#{_id}, #{nickname}, #{mobile}, #{password}, #{create_time})
+    </insert>
+
+
+    <!-- 用户查询 -->
+    <select id="queryUserByPhone" parameterType="java.lang.String" resultType="com.lucas.xim.core.system.User">
+        select * from xim_user where mobile =  #{mobile}
+    </select>
+
+
+
 </mapper>
