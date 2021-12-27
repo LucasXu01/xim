@@ -37,55 +37,6 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
-//                        ch.pipeline().addLast(new ServerHandler());
-//                        // inBound，处理读数据的逻辑链
-//                        ch.pipeline().addLast(new InBoundHandlerA());
-//                        ch.pipeline().addLast(new InBoundHandlerB());
-//                        ch.pipeline().addLast(new InBoundHandlerC());
-//
-//                        // outBound，处理写数据的逻辑链
-//                        ch.pipeline().addLast(new OutBoundHandlerA());
-//                        ch.pipeline().addLast(new OutBoundHandlerB());
-//                        ch.pipeline().addLast(new OutBoundHandlerC());
-
-                        // 单聊
-//                        ch.pipeline().addLast(new Spliter());
-//                        ch.pipeline().addLast(new PacketDecoder());
-//                        ch.pipeline().addLast(new LoginRequestHandler());
-//                        ch.pipeline().addLast(new AuthHandler());
-//                        ch.pipeline().addLast(new MessageRequestHandler());
-//                        ch.pipeline().addLast(new PacketEncoder());
-
-                        // 群聊
-//                        ch.pipeline().addLast(new Spliter());
-//                        ch.pipeline().addLast(new PacketDecoder());
-//                        ch.pipeline().addLast(new LoginRequestHandler());
-//                        ch.pipeline().addLast(new AuthHandler());
-//                        ch.pipeline().addLast(new MessageRequestHandler());
-//                        ch.pipeline().addLast(new CreateGroupRequestHandler());
-//                        ch.pipeline().addLast(new LogoutRequestHandler());
-//                        ch.pipeline().addLast(new PacketEncoder());
-
-//                        // 群聊 拉人
-//                        ch.pipeline().addLast(new Spliter());
-//                        ch.pipeline().addLast(new PacketDecoder());
-//                        // 登录请求处理器
-//                        ch.pipeline().addLast(new LoginRequestHandler());
-//                        ch.pipeline().addLast(new AuthHandler());
-//                        // 单聊消息请求处理器
-//                        ch.pipeline().addLast(new MessageRequestHandler());
-//                        // 创建群请求处理器
-//                        ch.pipeline().addLast(new CreateGroupRequestHandler());
-//                        // 加群请求处理器
-//                        ch.pipeline().addLast(new JoinGroupRequestHandler());
-//                        // 退群请求处理器
-//                        ch.pipeline().addLast(new QuitGroupRequestHandler());
-//                        // 获取群成员请求处理器
-//                        ch.pipeline().addLast(new ListGroupMembersRequestHandler());
-//                        // 登出请求处理器
-//                        ch.pipeline().addLast(new LogoutRequestHandler());
-//                        ch.pipeline().addLast(new PacketEncoder());
-
 
                         // 空闲检测
                         ch.pipeline().addLast(new IMIdleStateHandler());

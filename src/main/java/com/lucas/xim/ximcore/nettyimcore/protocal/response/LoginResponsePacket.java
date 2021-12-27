@@ -12,9 +12,13 @@ public class LoginResponsePacket extends Packet {
 
     private String userName;
 
+    private String mobile;
+
     private boolean success;
 
     private String reason;
+
+    private String token;
 
 
     @Override

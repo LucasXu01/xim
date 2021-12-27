@@ -8,6 +8,10 @@ package com.lucas.xim.ximcore.bean;
  * @Date: 2021/12/09/15:59 下午
  */
 public class IMMsg {
+
+    public static int MESSAGE_TYPE_C2C = 0x1;
+    public static int MESSAGE_TYPE_GROUP = 0x2;
+
     private String msgId;// 消息唯一标识
     private int msgType; // 消息类型
     private String sender;// 发送者标识
@@ -19,7 +23,7 @@ public class IMMsg {
     private String data; // 扩展字段，以key/value形式存储的json字符串
 
     public IMMsg(Builder builder) {
-        if(builder == null) {
+        if (builder == null) {
             return;
         }
 

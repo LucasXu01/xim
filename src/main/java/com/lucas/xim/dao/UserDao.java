@@ -28,4 +28,12 @@ public interface UserDao {
      * @return
      */
     User queryUserByPhone(String mobile);
+
+
+    /**
+     * 根据uid
+     * @param uid
+     * @return
+     */
+    User queryUserByUid(String uid);
 }

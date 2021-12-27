@@ -40,4 +40,8 @@ public class UserService {
     public User queryUserByPhone(String mobile) {
         return mUserDao.queryUserByPhone(mobile);
     }
+
+    public User queryUserByUid(String uid) {
+        return mUserDao.queryUserByUid(uid);
+    }
 }

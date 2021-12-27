@@ -27,12 +27,10 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
 
         // 2.通过消息发送方的会话信息构造要发送的消息
         MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
-        messageResponsePacket.setFromUserId(session.getUserId());
-        messageResponsePacket.setFromUserName(session.getUserName());
-        messageResponsePacket.setMessage(messageRequestPacket.getMessage());
+        messageResponsePacket.setImMsg(messageRequestPacket.getImMsg());
 
         // 3.拿到消息接收方的 channel
-        Channel toUserChannel = SessionUtil.getChannel(messageRequestPacket.getToUserId());
+        Channel toUserChannel = SessionUtil.getChannel(messageRequestPacket.getImMsg().getReceiver());
 
         // 4.将消息发送给消息接收方
         if (toUserChannel != null && SessionUtil.hasLogin(toUserChannel)) {

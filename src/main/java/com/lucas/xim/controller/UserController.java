@@ -8,6 +8,7 @@ import com.lucas.xim.core.system.User;
 import com.lucas.xim.rqto.LoginRQTO;
 import com.lucas.xim.rto.LoginRPTO;
 import com.lucas.xim.rto.RPTO;
+import com.lucas.xim.service.RedisTemplateService;
 import com.lucas.xim.service.UserService;
 import com.lucas.xim.utils.JWTUtil;
 import com.lucas.xim.utils.MapUtil;
@@ -15,11 +16,9 @@ import com.lucas.xim.utils.StringUtil;
 import com.lucas.xim.ximcore.nettyimcore.util.IDUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -42,6 +41,9 @@ import static com.lucas.xim.config.NetworkConfig.*;
 public class UserController {
     @Autowired
     private UserService mUserService;
+    @Autowired
+    private  RedisTemplateService redisTemplateService;
+
 
     @ResponseBody
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -55,13 +57,13 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = USER_REGISTER, method = RequestMethod.POST)
-    public RPTO<Object> register(@RequestBody Map<String, Object> params) {
+    public RPTO<Object> register(@RequestParam Map<String, Object> params) {
         log.debug("register() params = " + params);
         if (MapUtil.isEmpty(params)) {
             return new RPTO<>(ActionCode.PARAMS_IS_EMPTY);
         }
 
-        if (null == mUserService.queryUserByPhone(X_PARAM_MOBILE)) {// 手机已被注册
+        if (null != mUserService.queryUserByPhone((String) params.get(X_PARAM_MOBILE))) {// 手机已被注册
             return new RPTO<>(ActionCode.PHONE_IS_REGISTERD);
         }
 
@@ -77,12 +79,13 @@ public class UserController {
         String token = JWTUtil.sign(user.get_id(), user.getMobile());
         user.setToken(token);
 
+
         return new RPTO<>(ActionCode.SUCCESS, user);
     }
 
     @ResponseBody
     @RequestMapping(value = USER_LOGIN, method = RequestMethod.POST)
-    public RPTO<Object> login(@RequestBody Map<String, Object> params) {
+    public RPTO<Object> login(@RequestParam Map<String, Object> params) {
         log.debug("login() params = " + params);
 
         // TODO: 2021/12/9 只做了mobile校验，其余参数的校验 暂不添加了

@@ -1,5 +1,6 @@
 package com.lucas.xim.ximcore.nettyimcore.client.console;
 
+import com.lucas.xim.ximcore.bean.IMMsg;
 import com.lucas.xim.ximcore.nettyimcore.protocal.request.MessageRequestPacket;
 import io.netty.channel.Channel;
 
@@ -12,6 +13,10 @@ public class SendToUserConsoleCommand implements ConsoleCommand {
 
         String toUserId = scanner.next();
         String message = scanner.next();
-        channel.writeAndFlush(new MessageRequestPacket(toUserId, message));
+        IMMsg imMsg = new IMMsg.Builder()
+                .setSender(toUserId)
+                .setContent(message)
+                .build();
+        channel.writeAndFlush(new MessageRequestPacket(imMsg));
     }
 }

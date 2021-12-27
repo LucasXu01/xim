@@ -19,6 +19,9 @@
         select * from xim_user where mobile =  #{mobile}
     </select>
 
-
+    <!-- 用户查询 -->
+    <select id="queryUserByUid" parameterType="java.lang.String" resultType="com.lucas.xim.core.system.User">
+        select * from xim_user where _id =  #{uid}
+    </select>
 
 </mapper>

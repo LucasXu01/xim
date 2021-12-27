@@ -12,7 +12,11 @@ public class LoginRequestPacket extends Packet {
 
     private String username;
 
+    private String mobile;
+
     private String password;
+
+    private String token;
 
     @Override
     public Byte getCommand() {
